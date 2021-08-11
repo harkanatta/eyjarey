@@ -20,18 +20,18 @@ print(paste(gsub(".*[/]([^.]+)[.].*", "\\1", i)))
 ### Git: commit og push
 
 ###Ná í slóðirnar að myndunum eftir að þær eru komnar í möppuna minnimyndir
-req <- GET("https://api.github.com/repos/harkanatta/ashildarholtsvatn/git/trees/main?recursive=1")
+req <- GET("https://api.github.com/repos/harkanatta/eyjarey/git/trees/main?recursive=1")
 stop_for_status(req)
 
 filelist <- tibble(path=unlist(lapply(content(req)$tree, "[", "path"), use.names = F) %>% 
                      stringr::str_subset("minnimyndir") %>% 
                      stringr::str_subset("JPEG|JPG|PNG")) %>%
-  mutate(URL='https://raw.githubusercontent.com/harkanatta/ashildarholtsvatn/main/',
+  mutate(URL='https://raw.githubusercontent.com/harkanatta/eyjarey/main/',
          mURL=glue("{URL}{path}")) %>% 
   select(mURL)
 
 for (i in filelist) {
-  a=glue('<!-- .slide: data-background="{i}"data-background-size="contain" -->\n<span>\n\n:::success\nminntexti\n:::\n<!-- .element: class="fragment" data-fragment-index="1" --></span>\n\n---\n\n')
+  a=glue('<!-- .slide: data-background="{i}"data-background-size="contain" -->\n<span>\n\n<h2>\nminntexti\n</h2>\n<!-- .element: class="fragment" data-fragment-index="1" --></span>\n\n---\n\n')
 }
 clipr::write_clip(a) #slæðurnar komnar í clipboard
 
