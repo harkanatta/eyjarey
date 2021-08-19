@@ -1,7 +1,7 @@
 Eyjarey
 ===
 
-###### tags: `NNV` `BioPol` Lundi`
+###### tags: `NNV` `BioPol` `Lundi`
 
 :::info
 - **Dagsetning:** 10. ágúst, 2021, 10:00-11:00
